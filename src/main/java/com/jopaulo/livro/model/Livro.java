@@ -1,4 +1,4 @@
-package com.jopaulo.livros.model;
+package com.jopaulo.livro.model;
 
 import java.time.LocalDate;
 
@@ -6,18 +6,21 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.PrePersist;
 
-import org.springframework.data.annotation.Id;
-
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Livro {
 
-	@Id
+	@javax.persistence.Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
@@ -30,13 +33,12 @@ public class Livro {
 	@Column(nullable = false, length = 50)
 	private String descricao;
 
-	private Long isbn;
-
-	private Long ano;
-
-	private Long paginas;
-
 	@Column
 	private LocalDate dataCadastro;
+	
+	@PrePersist
+	public void prePersist() {
+		setDataCadastro(LocalDate.now());
+	}
 
 }

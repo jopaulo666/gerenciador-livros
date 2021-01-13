@@ -1,4 +1,4 @@
-package com.jopaulo.livros.model;
+package com.jopaulo.livro.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,15 +7,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import org.springframework.data.annotation.Id;
-
 import lombok.Data;
 
 @Entity
 @Data
 public class Usuario {
 
-	@Id
+	@javax.persistence.Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
