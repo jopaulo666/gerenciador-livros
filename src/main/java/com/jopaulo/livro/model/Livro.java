@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.PrePersist;
+import javax.validation.constraints.NotEmpty;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,15 +26,16 @@ public class Livro {
 	private Long id;
 
 	@Column(nullable = false, length = 50)
+	@NotEmpty(message = "")
 	private String titulo;
 
 	@Column(nullable = false, length = 50)
 	private String autor;
 
-	@Column(nullable = false, length = 150)
+	@Column(nullable = false, length = 255)
 	private String descricao;
 
-	@Column
+	@Column(name = "data_cadastro" ,updatable = false)
 	private LocalDate dataCadastro;
 	
 	@PrePersist
