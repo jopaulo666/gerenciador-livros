@@ -26,13 +26,15 @@ public class Livro {
 	private Long id;
 
 	@Column(nullable = false, length = 50)
-	@NotEmpty(message = "")
+	@NotEmpty(message = "{campo.titulo.obrigatorio}")
 	private String titulo;
 
 	@Column(nullable = false, length = 50)
+	@NotEmpty(message = "{campo.autor.obrigatorio}")
 	private String autor;
 
 	@Column(nullable = false, length = 255)
+	@NotEmpty(message = "{campo.descricao.obrigatorio}")
 	private String descricao;
 
 	@Column(name = "data_cadastro" ,updatable = false)

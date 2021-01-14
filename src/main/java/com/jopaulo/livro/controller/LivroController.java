@@ -1,5 +1,7 @@
 package com.jopaulo.livro.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -24,7 +26,8 @@ public class LivroController {
 	private LivroRepository repository;
 	
 	@PostMapping
-	public Livro salvar(@RequestBody Livro livro) {
+	@ResponseStatus(HttpStatus.CREATED)
+	public Livro salvar(@RequestBody @Valid Livro livro) {
 		return repository.save(livro);
 	}
 	
@@ -41,7 +44,7 @@ public class LivroController {
 				repository.delete(Livro); 
 				return Void.TYPE;
 			})
-			.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+			.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Livro não encontrado"));
 	}
 	
 	@PutMapping("{id}")
@@ -52,6 +55,6 @@ public class LivroController {
 				livroAtualizada.setId(Livro.getId());
 				return repository.save(livroAtualizada);
 			})
-			.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+			.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Livro não encontrado"));
 	}
 }
