@@ -30,7 +30,7 @@ public class Livro {
 	@Column(nullable = false, length = 50)
 	private String autor;
 
-	@Column(nullable = false, length = 50)
+	@Column(nullable = false, length = 150)
 	private String descricao;
 
 	@Column
