@@ -1,5 +1,7 @@
 package com.jopaulo.livro.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +33,11 @@ public class LivroController {
 	@ResponseStatus(HttpStatus.CREATED)
 	public Livro salvar(@RequestBody @Valid Livro livro) {
 		return repository.save(livro);
+	}
+	
+	@GetMapping
+	public List<Livro> listarTodos(){
+		return repository.findAll();
 	}
 	
 	@GetMapping("{id}")

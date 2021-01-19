@@ -24,7 +24,9 @@ public class GerenciadorLivrosApplication {
 			Livro livro = Livro.builder()
 					.titulo("O Alquimista")
 					.autor("Paulo Coelho")
-					.descricao("A História de um Alquimista").build();
+					.descricao("De tempos em tempos, surge um livro capaz de mudar para sempre a vida de seus leitores."
+							+ "O Alquimista é um deles. Com mais de 45 milhões de exemplares vendidos em todo o mundo, "
+							+ "o mais famoso título de Paulo Coelho já se estabeleceu como um clássico moderno, atemporal e universal.").build();
 			repository.save(livro);
 					
 		};

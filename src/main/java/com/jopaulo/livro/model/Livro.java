@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.PrePersist;
 import javax.validation.constraints.NotEmpty;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -33,11 +35,12 @@ public class Livro {
 	@NotEmpty(message = "{campo.autor.obrigatorio}")
 	private String autor;
 
-	@Column(nullable = false, length = 255)
+	@Column(nullable = false, length = 500)
 	@NotEmpty(message = "{campo.descricao.obrigatorio}")
 	private String descricao;
 
 	@Column(name = "data_cadastro" ,updatable = false)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dataCadastro;
 	
 	@PrePersist
