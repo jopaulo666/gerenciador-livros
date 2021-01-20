@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.jopaulo.livro.model.Usuario;
+import com.jopaulo.livro.service.UsuarioService;
 import com.jopaulo.livros.repository.UsuarioRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -21,11 +23,15 @@ import lombok.RequiredArgsConstructor;
 public class UsuarioController {
 
 	@Autowired
-	private UsuarioRepository repository;
+	private UsuarioService service;
 	
 	@PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public void salvar(@RequestBody @Valid Usuario usuario){
-        repository.save(usuario);
+		try {
+			service.salvar(usuario);
+		} catch (Exception e) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+		}
     }
 }

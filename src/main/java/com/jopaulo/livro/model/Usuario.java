@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotEmpty;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,8 +21,10 @@ public class Usuario {
 	private Long id;
 	
 	@Column(nullable = false, length = 50, unique = true, name = "login")
+	@NotEmpty(message = "{campo.login.obrigatorio}")
 	private String username;
 	
 	@Column(nullable = false, length = 50, name = "senha")
+	@NotEmpty(message = "{campo.senha.obrigatorio}")
 	private String password;
 }
