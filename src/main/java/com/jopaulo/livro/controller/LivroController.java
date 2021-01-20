@@ -23,7 +23,6 @@ import com.jopaulo.livros.repository.LivroRepository;
 
 @RestController
 @RequestMapping("/api/livros")
-@CrossOrigin("http://localhost:4200")
 public class LivroController {
 
 	@Autowired
